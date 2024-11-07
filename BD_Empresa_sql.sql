@@ -38,3 +38,18 @@ INSERT INTO Funcionarios
  FROM Funcionarios
  INNER JOIN Clientes 
  ON Funcionarios.ID_Funcionario = Clientes.ID_Funcionario;
+ 
+ SELECT Funcionarios.Nome, Funcionarios.ID_Funcionario
+ FROM Funcionarios
+ LEFT OUTER JOIN Clientes 
+ ON Funcionarios.ID_Funcionario = Clientes.ID_Funcionario;
+ 
+ SELECT Funcionarios.Nome, Funcionarios.ID_Funcionario
+ FROM Funcionarios
+ RIGHT OUTER JOIN Clientes 
+ ON Funcionarios.ID_Funcionario = Clientes.ID_Funcionario;
+ 
+ SELECT Funcionarios.Nome, Funcionarios.ID_Funcionario
+ FROM Funcionarios
+ CROSS JOIN Clientes 
+ ON Funcionarios.ID_Funcionario = Clientes.ID_Funcionario;
