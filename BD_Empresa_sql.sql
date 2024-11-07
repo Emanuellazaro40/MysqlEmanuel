@@ -3,21 +3,21 @@ CREATE DATABASE Empresa;
 USE Empresa;
 
 CREATE TABLE Funcionarios (
-	ID_Funcionaro INT,
+	ID_Funcionario INT,
      Nome VARCHAR(20),
      Morada VARCHAR(40),
      Contacto INT,
-     PRIMARY KEY(ID_Funcionaro)
+     PRIMARY KEY(ID_Funcionario)
 	);
 
 CREATE TABLE Clientes (
-	ID_Clinete INT AUTO_INCREMENT,
+	ID_Cliente INT AUTO_INCREMENT,
     Nome VARCHAR(20),
     Morada VARCHAR(40),
     Contacto INT,
-    ID_Funcionaro INT,
-    PRIMARY KEY(ID_Clinete),
-    FOREIGN KEY(ID_Funcionaro) REFERENCES Funcionarios(ID_Funcionaro)
+    ID_Funcionario INT,
+    PRIMARY KEY(ID_Cliente),
+    FOREIGN KEY(ID_Funcionario) REFERENCES Funcionarios(ID_Funcionario)
     );
      
 SELECT * FROM Funcionarios, Clientes;
@@ -33,3 +33,8 @@ INSERT INTO Funcionarios
  (2, 'Susana Reis', 'Lisboa', 926440472, 2),
  (3, 'Luís Sousa', 'Gaia', 923688102, 4),
  (4, 'Daniel Anjos', 'Barreiro', 922590172, 1);
+ 
+ SELECT Funcionarios.Nome, Funcionarios.ID_Funcionario
+ FROM Funcionarios
+ INNER JOIN Clientes 
+ ON Funcionarios.ID_Funcionario = Clientes.ID_Funcionario;
