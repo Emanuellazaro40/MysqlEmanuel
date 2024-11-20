@@ -73,12 +73,18 @@ GROUP BY Sum.Empresa;
 CREATE TABLE MinMax (
 	pedidoId INT,
     Cliente VARCHAR(20),
-    data_nascimento DATE,
+    data_nascimento DATE
 );
 
 
-SELECT MIN(Sum.Quantidade) AS Media_quantidade
-FROM Sum; 
+INSERT INTO MinMax VALUES
+(1, 'CO1', '1986-12-20'),
+(2, 'CO2', '1989-12-19'),
+(3, 'CO3', '2012-08-03');
 
-SELECT MAX(Sum.Quantidade) AS Media_quantidade
-FROM Sum;
+
+SELECT MIN(MinMax.data_nascimento)
+FROM MinMax; 
+
+SELECT MAX(MinMax.data_nascimento) 
+FROM MinMax;
