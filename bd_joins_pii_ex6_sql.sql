@@ -41,6 +41,21 @@ UPDATE Veiculo
 SET Ano_veiculo = 2022
 WHERE Veiculo.Matricula  = '70-20-ZH';
 
+ALTER TABLE Veiculo
+ADD COLUMN Cod_estacionamento INT;
+
+UPDATE Veiculo
+SET Cod_estacionamento = 1
+WHERE Veiculo.Matricula  = '12-20-PS';
+
+UPDATE Veiculo
+SET Cod_estacionamento = 2
+WHERE Veiculo.Matricula  = '21-FC-41';
+
+UPDATE Veiculo
+SET Cod_estacionamento = 3
+WHERE Veiculo.Matricula  = '70-20-ZH';
+
 CREATE TABLE Estacionamentos (
 	Num INT,
     Piso INT,
@@ -109,36 +124,81 @@ INSERT INTO Estacionar VALUES
 (3, 1, '70-20-ZH', '2024-10-12', '2024-10-12', '09:00', '15:30');
 
 
-# Exercicio 1
+# Exercicio A
 SELECT Clientes.Nome, Veiculo.Matricula
 FROM Clientes
 INNER JOIN Veiculo
 ON Clientes.NIF = Veiculo.Cliente_NIF;
 
-# Exercicio 2
+# Exercicio B
 SELECT Clientes.Nome, Clientes.NIF
 FROM Clientes 
 LEFT JOIN Veiculo
 ON Clientes.NIF = Veiculo.Cliente_NIF
 WHERE Veiculo.Matricula = '21-FC-41';
 
-# Exercicio 3
+# Exercicio C
 SELECT Veiculo.Matricula, Veiculo.Cor
 FROM Veiculo
 LEFT JOIN Estacionamentos 
 ON Veiculo.Matricula = Estacionamentos.Veic_Matricula
 WHERE Estacionamentos.Num = 1;
 
-# Exercicio 4
+# Exercicio D
 SELECT Veiculo.Matricula, Veiculo.Ano_veiculo
 FROM Veiculo
 LEFT JOIN Estacionamentos
 ON Veiculo.Matricula = Estacionamentos.Veic_Matricula
 WHERE Estacionamentos.Num = 1;
 
-# Exercicio 5
+# Exercicio E
 SELECT Estacionar.DataEntrada, Estacionar.DataSaida 
 FROM Estacionar
 LEFT JOIN Veiculo
 ON Estacionar.Veiculo_Matricula = Veiculo.Matricula
 WHERE Veiculo.Matricula = '70-20-ZH';
+
+# Exer F
+SELECT Clientes.Nome
+FROM Clientes
+INNER JOIN Veiculo
+ON Veiculo.Cliente_NIF = Clientes.NIF
+WHERE Veiculo.Modelo_codMod = 1;
+
+# Exerc G
+SELECT Veiculo.Matricula, Estacionar.HoraEntrada, Estacionar.HoraSaida
+FROM Veiculo
+LEFT JOIN Estacionar
+ON Veiculo.Matricula = Estacionar.Veiculo_Matricula
+WHERE Veiculo.Matricula LIKE '%S%' and Veiculo.Cor = 'Verde';
+
+
+
+# Exer H
+SELECT Clientes.Nome
+FROM Clientes
+INNER JOIN Veiculo
+ON Clientes.NIF = Veiculo.Cliente_NIF
+WHERE Veiculo.Cod_estacionamento = 2;
+
+# Exerc I
+SELECT Clientes.NIF
+FROM Clientes
+INNER JOIN Veiculo
+ON Clientes.NIF = Veiculo.Cliente_NIF
+WHERE Veiculo.Cod_estacionamento = 3;
+
+# Exerc j
+SELECT Modelo.cod_Mod, Modelo.Nome, Modelo.Marca
+FROM Modelo
+INNER JOIN Veiculo
+ON Modelo.cod_Mod = Veiculo.Modelo_codMod
+WHERE Veiculo.Cod_estacionamento = 2;
+
+# Exerc k
+SELECT Clientes.Nome, Veiculo.Matricula, Modelo.cod_Mod, Modelo.Nome, Modelo.Marca
+FROM Clientes 
+LEFT JOIN Veiculo
+ON Clientes.NIF = Veiculo.Cliente_NIF
+LEFT JOIN Modelo
+ON Modelo.cod_Mod = Veiculo.Modelo_codMod;
